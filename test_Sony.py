@@ -96,7 +96,8 @@ def pack_raw(raw):
     return out
 
 
-sess = tf.Session()
+# sess = tf.Session()
+sess = tf.compat.v1.Session()
 in_image = tf.placeholder(tf.float32, [None, None, None, 4])
 gt_image = tf.placeholder(tf.float32, [None, None, None, 3])
 out_image = network(in_image)
