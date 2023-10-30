@@ -6,7 +6,7 @@ import os, scipy.io
 
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
-
+from PIL import Image
 import tf_slim as slim
 import numpy as np
 import rawpy
@@ -152,9 +152,18 @@ for test_id in test_ids:
         scale_full = scale_full * np.mean(gt_full) / np.mean(
             scale_full)  # scale the low-light image to the same mean of the groundtruth
 
-        scipy.misc.toimage(output * 255, high=255, low=0, cmin=0, cmax=255).save(
-            result_dir + 'final/%5d_00_%d_out.png' % (test_id, ratio))
-        scipy.misc.toimage(scale_full * 255, high=255, low=0, cmin=0, cmax=255).save(
-            result_dir + 'final/%5d_00_%d_scale.png' % (test_id, ratio))
-        scipy.misc.toimage(gt_full * 255, high=255, low=0, cmin=0, cmax=255).save(
-            result_dir + 'final/%5d_00_%d_gt.png' % (test_id, ratio))
+        # scipy.misc.toimage(output * 255, high=255, low=0, cmin=0, cmax=255).save(
+        #     result_dir + 'final/%5d_00_%d_out.png' % (test_id, ratio))
+        # scipy.misc.toimage(scale_full * 255, high=255, low=0, cmin=0, cmax=255).save(
+        #     result_dir + 'final/%5d_00_%d_scale.png' % (test_id, ratio))
+        # scipy.misc.toimage(gt_full * 255, high=255, low=0, cmin=0, cmax=255).save(
+        #     result_dir + 'final/%5d_00_%d_gt.png' % (test_id, ratio))
+
+        output_image = Image.fromarray(np.uint8(output * 255))
+        output_image.save(result_dir + 'final/%5d_00_%d_out.png' % (test_id, ratio))
+
+        scale_full_image = Image.fromarray(np.uint8(scale_full * 255))
+        scale_full_image.save(result_dir + 'final/%5d_00_%d_scale.png' % (test_id, ratio))
+
+        gt_full_image = Image.fromarray(np.uint8(gt_full * 255))
+        gt_full_image.save(result_dir + 'final/%5d_00_%d_gt.png' % (test_id, ratio))
