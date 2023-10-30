@@ -1,6 +1,10 @@
 from __future__ import division
 import os, scipy.io
-import tensorflow as tf
+# import tensorflow as tf
+
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
 import tf_slim as slim
 import numpy as np
 import rawpy
@@ -120,8 +124,8 @@ def pack_raw(raw):
     return out
 
 
-# sess = tf.Session()
-sess = tf.compat.v1.Session()
+sess = tf.Session()
+# sess = tf.compat.v1.Session()
 in_image = tf.placeholder(tf.float32, [None, None, None, 9])
 gt_image = tf.placeholder(tf.float32, [None, None, None, 3])
 out_image = network(in_image)
