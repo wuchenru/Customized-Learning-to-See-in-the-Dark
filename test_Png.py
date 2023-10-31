@@ -17,8 +17,13 @@ checkpoint_dir = './checkpoint/Sony/'
 result_dir = './result_Pallets/'
 
 # Get test PNG image files
-test_fns = glob.glob(gt_dir + '*.png')
+test_fns = glob.glob(input_dir + '*.png')
 test_ids = [os.path.basename(test_fn) for test_fn in test_fns]
+
+print("=================================")
+for id in test_ids:
+    print(id)
+print("=================================")
 
 DEBUG = 0
 if DEBUG == 1:
@@ -142,6 +147,7 @@ if not os.path.isdir(result_dir + 'final/'):
 # Process PNG images and save the enhanced results
 for test_id in test_ids:
     in_path = os.path.join(input_dir, test_id)
+    in_path += ".png"
     input_full = np.array(Image.open(in_path).convert('RGB')) / 255.0
 
     # Apply the image enhancement model
