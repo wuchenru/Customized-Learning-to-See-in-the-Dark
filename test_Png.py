@@ -4,7 +4,12 @@ from PIL import Image
 import tf_slim as slim
 import numpy as np
 import glob
-import tensorflow as tf
+
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
+import rawpy
+
 
 input_dir = './dataset/pallets/short/'  # Update to your PNG input directory
 gt_dir = './dataset/pallets/long/'  # Update to your PNG ground truth directory
