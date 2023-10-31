@@ -147,7 +147,17 @@ if not os.path.isdir(result_dir + 'final/'):
 # Process PNG images and save the enhanced results
 for test_id in test_ids:
     in_path = os.path.join(input_dir, test_id)
-    input_full = np.array(Image.open(in_path).convert('RGB')) / 255.0
+
+    # Convert PNG Image to a 4-channel image
+    input_image = Image.open(in_path).convert('RGB')
+    alpha_channel = Image.new('L', input_image.size, 255)
+
+    # merge
+    input_image = Image.merge('RGBA', (input_image, alpha_channel))
+
+
+
+    input_full = np.array(input_image) / 255.0
 
     # Apply the image enhancement model
     input_full = np.expand_dims(input_full, axis=0)  # Add batch dimension
