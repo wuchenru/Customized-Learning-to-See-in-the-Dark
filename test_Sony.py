@@ -21,6 +21,11 @@ result_dir = './result_Sony/'
 test_fns = glob.glob(gt_dir + '/1*.ARW')
 test_ids = [int(os.path.basename(test_fn)[0:5]) for test_fn in test_fns]
 
+print("=================================")
+for id in test_ids:
+    print(id)
+print("=================================")
+
 DEBUG = 0
 if DEBUG == 1:
     save_freq = 2
