@@ -147,7 +147,6 @@ if not os.path.isdir(result_dir + 'final/'):
 # Process PNG images and save the enhanced results
 for test_id in test_ids:
     in_path = os.path.join(input_dir, test_id)
-    in_path += ".png"
     input_full = np.array(Image.open(in_path).convert('RGB')) / 255.0
 
     # Apply the image enhancement model
