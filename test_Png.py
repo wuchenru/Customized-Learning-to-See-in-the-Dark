@@ -152,7 +152,7 @@ for test_id in test_ids:
     input_image = Image.open(in_path).convert('RGB')
     # Create an alpha channel with 3 channels (matching the RGB channels)
     alpha_channel = Image.new('RGB', input_image.size)
-    alpha_channel_data = [255] * (input_image.width * input_image.height * 3)
+    alpha_channel_data = [255] * (input_image.width * input_image.height)
     alpha_channel.putdata(alpha_channel_data)
 
     # merge
